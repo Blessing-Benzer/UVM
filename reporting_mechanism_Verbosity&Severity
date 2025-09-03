@@ -1,0 +1,348 @@
+/////////////////////////////////* Reporting Macros*\///////////////////////////////////////////////
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+module tb;
+  
+  initial begin
+    #50;
+    `uvm_info("TB_TOP","Hello World", UVM_LOW); 
+     $display("Hello World with Display");
+  end
+endmodule
+
+/////////////////////////////////* Printing a Variable*\///////////////////////////////////////////////
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+module tb;
+  
+int data = 56;
+  
+  initial begin
+    `uvm_info("TB_TOP", $sformatf("Value of data : %0d",data), UVM_NONE);
+  end
+
+endmodule
+
+/////////////////////////////////*set and get Verbosity*\///////////////////////////////////////////////
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+module tb;
+  
+  initial begin
+    uvm_top.set_report_verbosity_level(UVM_HIGH);
+    $display("Default Verbosity level : %0d ", uvm_top.get_report_verbosity_level);
+    `uvm_info("TB_TOP", "String", UVM_HIGH);
+  
+  end
+endmodule
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+/////////////////////////////////*How to change  Verbosity with IDs*\///////////////////////////////////////////////
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  
+  task run();
+    `uvm_info("DRV1", "Executed Driver1 Code", UVM_HIGH);
+    `uvm_info("DRV2", "Executed Driver2 Code", UVM_HIGH);
+  endtask
+  
+endclass
+ 
+ 
+module tb;
+  
+ driver drv;
+
+ initial begin
+   drv = new("DRV", null);
+   drv.set_report_id_verbosity("DRV1",UVM_HIGH);
+   drv.run();
+ 
+  end
+endmodule
+
+/////////////////////////////////*How to change  Verbosity with IDs Multiple classes*\///////////////////////////////////////////////
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  
+  task run();
+    `uvm_info("DRV1", "Executed Driver1 Code", UVM_HIGH);
+    `uvm_info("DRV2", "Executed Driver2 Code", UVM_HIGH);
+  endtask
+  
+endclass
+ 
+class env extends uvm_env;
+  `uvm_component_utils(env)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  
+  task run();
+    `uvm_info("ENV1", "Executed ENV1 Code", UVM_HIGH);
+    `uvm_info("ENV2", "Executed ENV2 Code", UVM_HIGH);
+  endtask
+  
+endclass
+ 
+module tb;
+  
+ driver drv;
+ env e;
+
+ initial begin
+   drv = new("DRV", null);
+   e   = new("ENV", null);
+  // e.set_report_verbosity_level(UVM_HIGH);
+   drv.run();
+   e.run();
+    
+  end
+  
+endmodule
+
+/////////////////////////////////*How to change  Verbosity with Entire Hierarchy*\///////////////////////////////////////////////
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  
+  task run();
+    `uvm_info("DRV", "Executed Driver Code", UVM_HIGH);
+  endtask
+  
+endclass
+ 
+class monitor extends uvm_monitor;
+  `uvm_component_utils(monitor)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  
+  task run();
+    `uvm_info("MON", "Executed Monitor Code", UVM_HIGH);
+  endtask
+  
+endclass
+ 
+ 
+class env extends uvm_env;
+  `uvm_component_utils(env)
+  
+  driver drv;
+  monitor mon;
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    drv = new("DRV", this);
+    mon = new("MON", this);
+    drv.run();
+    mon.run();
+  endtask
+  
+endclass
+ 
+ 
+module tb;
+  
+ 
+ env e;
+  
+  
+ initial begin
+   e  = new("ENV", null);
+   e.set_report_verbosity_level_hier(UVM_HIGH);
+   e.run(); 
+  end
+  
+  
+endmodule
+/////////////////////////////////* uvm info , warning , error , fatal *\///////////////////////////////////////////////
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+ 
+  
+  
+  task run();
+    `uvm_info("DRV", "Informational Message", UVM_NONE);
+    `uvm_warning("DRV", "Potential Error");
+    `uvm_error("DRV", "Real Error");
+     #10;
+    `uvm_fatal("DRV", "Simulation cannot continue");
+  endtask
+  
+ 
+  
+endclass
+
+module tb;
+  driver d;
+  
+  initial begin
+    d = new("DRV", null);
+    d.run();
+  end
+  
+endmodule
+/////////////////////////////////* Overerding severity *\///////////////////////////////////////////////
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+
+  task run();
+    `uvm_info("DRV", "Informational Message", UVM_NONE);
+    `uvm_warning("DRV", "Potential Error");
+    `uvm_error("DRV", "Real Error");
+     #10;
+    `uvm_fatal("DRV", "Simulation cannot continue DRV1");
+    #10;
+    `uvm_fatal("DRV1", "Simulation Cannot Continue DRV1");
+  endtask
+  
+ 
+  
+endclass
+ 
+module tb;
+  driver d;
+  
+  initial begin
+    d = new("DRV", null);
+   // d.set_report_severity_override(UVM_FATAL, UVM_ERROR); //Normal overriding
+    d.set_report_severity_id_override(UVM_FATAL, "DRV", UVM_ERROR); //ID overriding
+    d.run();
+  end
+  
+endmodule
+
+/////////////////////////////////* Associated Actions of Macros *\///////////////////////////////////////////////
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+ 
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  task run();
+    `uvm_info("DRV", "Informational Message", UVM_NONE);
+    `uvm_warning("DRV", "Potential Error");
+    `uvm_error("DRV", "Real Error"); ///uvm_count
+    `uvm_error("DRV", "Second Real Error");
+    /*
+     #10;
+    `uvm_fatal("DRV", "Simulation cannot continue DRV1"); /// uvm_exit
+    #10;
+    `uvm_fatal("DRV1", "Simulation Cannot Continue DRV1");
+   */
+  endtask
+  
+ 
+  
+endclass
+ 
+ 
+module tb;
+  driver d;
+  
+  initial begin
+    d = new("DRV", null);
+    d.set_report_max_quit_count(3);
+    
+    d.run();
+  end
+  
+endmodule
+
+/////////////////////////////////* UVM LOG *\///////////////////////////////////////////////
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path , uvm_component parent);
+    super.new(path, parent);
+  endfunction
+ 
+  task run();
+    `uvm_info("DRV", "Informational Message", UVM_NONE);
+    `uvm_warning("DRV", "Potential Error");
+    `uvm_error("DRV", "Real Error"); 
+    `uvm_error("DRV", "Second Real Error");
+  endtask
+endclass
+ 
+ 
+module tb;
+  driver d;
+  int file;
+  
+  initial begin
+    file = $fopen("log.txt", "w");
+    d = new("DRV", null);
+    //d.set_report_default_file(file);
+    d.set_report_severity_file(UVM_ERROR, file);
+    
+  //  d.set_report_severity_action(UVM_INFO, UVM_DISPLAY|UVM_LOG);
+   // d.set_report_severity_action(UVM_WARNING, UVM_DISPLAY|UVM_LOG);
+    d.set_report_severity_action(UVM_ERROR, UVM_DISPLAY|UVM_LOG);
+ 
+    
+    d.run();
+    
+    #10;
+    $fclose(file);
+  end
+endmodule
