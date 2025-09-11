@@ -46,8 +46,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   
@@ -79,8 +79,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   
@@ -94,8 +94,8 @@ endclass
 class env extends uvm_env;
   `uvm_component_utils(env)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
   
   
@@ -130,8 +130,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   
@@ -144,8 +144,8 @@ endclass
 class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   
@@ -162,8 +162,8 @@ class env extends uvm_env;
   driver drv;
   monitor mon;
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
   
   task run();
@@ -197,8 +197,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
  
@@ -232,8 +232,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
 
   task run();
@@ -270,8 +270,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   task run();
@@ -312,8 +312,8 @@ import uvm_pkg::*;
 class driver extends uvm_driver;
   `uvm_component_utils(driver)
   
-  function new(string path , uvm_component parent);
-    super.new(path, parent);
+  function new(string name , uvm_component parent);
+    super.new(name, parent);
   endfunction
  
   task run();
