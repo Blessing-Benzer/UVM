@@ -6,8 +6,8 @@ import uvm_pkg::*;
 class comp extends uvm_component;
   `uvm_component_utils(comp)
   
-  function new(string path = "comp", uvm_component parent = null);
-    super.new(path,parent);
+  function new(string name = "comp", uvm_component parent = null);
+    super.new(name,parent);
   endfunction
   
   virtual function void build_phase(uvm_phase phase);
@@ -41,8 +41,8 @@ import uvm_pkg::*;
 class a extends uvm_component;
   `uvm_component_utils(a)
   
-  function new(string path = "a", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "a", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   
@@ -56,8 +56,8 @@ endclass
 class b extends uvm_component;
   `uvm_component_utils(b)
   
-  function new(string path = "b", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "b", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   
@@ -75,8 +75,8 @@ class c extends uvm_component;
   a a_inst;
   b b_inst;
   
-  function new(string path = "c", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "c", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   
