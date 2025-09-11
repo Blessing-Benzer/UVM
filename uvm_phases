@@ -5,8 +5,8 @@ import uvm_pkg::*;
 class test extends uvm_test;
   `uvm_component_utils(test)
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   
@@ -93,8 +93,8 @@ class driver extends uvm_driver;
   `uvm_component_utils(driver) 
   
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -109,8 +109,8 @@ class monitor extends uvm_monitor;
   `uvm_component_utils(monitor) 
   
   
-  function new(string path = "monitor", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "monitor", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -127,8 +127,8 @@ class env extends uvm_env;
   driver drv;
   monitor mon;
   
-  function new(string path = "env", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "env", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -146,8 +146,8 @@ class test extends uvm_test;
   
   env e;
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -176,8 +176,8 @@ class driver extends uvm_driver;
   `uvm_component_utils(driver) 
   
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void connect_phase(uvm_phase phase);
@@ -192,8 +192,8 @@ class monitor extends uvm_monitor;
   `uvm_component_utils(monitor) 
   
   
-  function new(string path = "monitor", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "monitor", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void connect_phase(uvm_phase phase);
@@ -210,8 +210,8 @@ class env extends uvm_env;
   driver d;
   monitor m;
   
-  function new(string path = "env", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "env", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -235,8 +235,8 @@ class test extends uvm_test;
   
   env e;
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -270,8 +270,8 @@ class comp extends uvm_component;
   `uvm_component_utils(comp)
   
  
-  function new(string path = "comp", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "comp", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -301,8 +301,8 @@ class comp extends uvm_component;
   `uvm_component_utils(comp)
   
  
-  function new(string path = "comp", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "comp", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -340,8 +340,8 @@ class driver extends uvm_driver;
   `uvm_component_utils(driver) 
   
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -366,8 +366,8 @@ class monitor extends uvm_monitor;
   `uvm_component_utils(monitor) 
   
   
-  function new(string path = "monitor", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "monitor", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -396,8 +396,8 @@ class env extends uvm_env;
   driver d;
   monitor m;
   
-  function new(string path = "env", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "env", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -414,8 +414,8 @@ class test extends uvm_test;
   
   env e;
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -445,8 +445,8 @@ class comp extends uvm_component;
   `uvm_component_utils(comp)
   
  
-  function new(string path = "comp", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "comp", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -495,8 +495,8 @@ class comp extends uvm_component;
   `uvm_component_utils(comp)
   
  
-  function new(string path = "comp", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "comp", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -547,8 +547,8 @@ class driver extends uvm_driver;
   `uvm_component_utils(driver) 
   
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -580,8 +580,8 @@ class monitor extends uvm_monitor;
   `uvm_component_utils(monitor) 
   
   
-  function new(string path = "monitor", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "monitor", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   task reset_phase(uvm_phase phase);
@@ -613,8 +613,8 @@ class env extends uvm_env;
   driver d;
   monitor m;
   
-  function new(string path = "env", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "env", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
@@ -633,8 +633,8 @@ class test extends uvm_test;
   
   env e;
   
-  function new(string path = "test", uvm_component parent = null);
-    super.new(path, parent);
+  function new(string name = "test", uvm_component parent = null);
+    super.new(name, parent);
   endfunction
   
   function void build_phase(uvm_phase phase);
