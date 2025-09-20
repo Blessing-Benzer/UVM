@@ -157,7 +157,7 @@ end
  
 endmodule
 
-//////////////////////////////////////////////////////HAND SHAKING MECHANISH////////////////////////////////////////////////////
+//////////////////////////////////////////////////////HAND SHAKING MECHANISM////////////////////////////////////////////////////
 `include "uvm_macros.svh"
 import uvm_pkg::*;
  
@@ -357,10 +357,18 @@ class sequence1 extends uvm_sequence#(transaction);
     super.new(name);    
   endfunction
   
-  
+  ///METHOD 1
   virtual task body();
     repeat(5) begin
       `uvm_do(trans);
+//METOD 2 ;;;;MOST PREFFERED
+  virtual task body();
+      repeat(5) begin
+      trans = transaction::type_id::create("trans");
+      start_item(trans);
+      assert(trans.randomize);
+      finish_item(trans);
+
       `uvm_info("SEQ", $sformatf("a : %0d b:%0d", trans.a, trans.b), UVM_NONE);
     end
   endtask
